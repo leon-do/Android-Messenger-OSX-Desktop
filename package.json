@@ -1,0 +1,20 @@
+{
+  "name": "android-messages",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package-mac": "electron-packager . 'Android Messenger' --overwrite --platform=darwin --arch=x64 --icon=icon.icns --prune=true --out=release-builds"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron-window-state": "^5.0.3"
+  },
+  "devDependencies": {
+    "electron": "^8.0.0",
+    "electron-packager": "^14.2.1"
+  }
+}
