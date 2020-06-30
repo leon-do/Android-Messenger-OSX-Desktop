@@ -1,22 +1,23 @@
 const { app, BrowserWindow } = require("electron");
 const windowStateKeeper = require("electron-window-state");
+const shell = require("electron").shell;
 let win;
 
 function createWindow() {
   // Load the previous state with fallback to defaults
   let mainWindowState = windowStateKeeper({
     defaultWidth: 1024,
-    defaultHeight: 768
+    defaultHeight: 768,
   });
 
   // Create the browser window.
   win = new BrowserWindow({
     title: "Android Messages",
-    icon: __dirname + '/icon.icns',
+    icon: __dirname + "/icon.icns",
     x: mainWindowState.x,
     y: mainWindowState.y,
     width: mainWindowState.width,
-    height: mainWindowState.height
+    height: mainWindowState.height,
   });
 
   // Let us register listeners on the window, so we can update the state
@@ -25,6 +26,13 @@ function createWindow() {
   mainWindowState.manage(win);
 
   win.loadURL("https://messages.google.com/web/authentication?redirected=true");
+
+  //open links externally by default
+  win.webContents.on("new-window", (event, url) => {
+		console.log('asdf')
+    event.preventDefault();
+    shell.openExternal(url);
+  });
 
   // Open the DevTools.
   // win.webContents.openDevTools()
