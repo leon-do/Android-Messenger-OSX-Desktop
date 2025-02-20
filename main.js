@@ -25,11 +25,15 @@ function createWindow() {
   // and restore the maximized or full screen state
   mainWindowState.manage(win);
 
+  win.webContents.setUserAgent(
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
+  );
+
   win.loadURL("https://messages.google.com/web/authentication?redirected=true");
 
   //open links externally by default
   win.webContents.on("new-window", (event, url) => {
-		console.log('asdf')
+    console.log("asdf");
     event.preventDefault();
     shell.openExternal(url);
   });
